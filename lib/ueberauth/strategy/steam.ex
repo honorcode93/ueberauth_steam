@@ -15,6 +15,7 @@ defmodule Ueberauth.Strategy.Steam do
   """
   @spec handle_request!(Plug.Conn.t) :: Plug.Conn.t
   def handle_request!(conn) do
+    IO.puts('handle_request')
     query =
       %{
         "openid.mode" => "checkid_setup",
@@ -34,6 +35,7 @@ defmodule Ueberauth.Strategy.Steam do
   """
   @spec handle_callback!(Plug.Conn.t) :: Plug.Conn.t
   def handle_callback!(conn = %Plug.Conn{params: %{"openid.mode" => "id_res"}}) do
+    IO.puts('handle_callback')
     params = conn.params
 
     [valid, user] =
@@ -109,7 +111,7 @@ defmodule Ueberauth.Strategy.Steam do
   end
 
   @spec retrieve_user(map) :: map | nil
-  def retrieve_user(%{"openid.claimed_id" => "http://steamcommunity.com/openid/id/" <> id}) do
+  defp retrieve_user(%{"openid.claimed_id" => "https://steamcommunity.com/openid/id/" <> id}) do
     key =
       :ueberauth
       |> Application.fetch_env!(Ueberauth.Strategy.Steam)
@@ -126,7 +128,7 @@ defmodule Ueberauth.Strategy.Steam do
   end
 
   @spec validate_user(map) :: boolean
-  def validate_user(params) do
+  defp validate_user(params) do
     query =
       params
       |> Enum.filter(fn {key, _value} -> String.starts_with?(key, "openid.") end)
