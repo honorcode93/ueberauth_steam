@@ -109,7 +109,7 @@ defmodule Ueberauth.Strategy.Steam do
   end
 
   @spec retrieve_user(map) :: map | nil
-  defp retrieve_user(%{"openid.claimed_id" => "http://steamcommunity.com/openid/id/" <> id}) do
+  def retrieve_user(%{"openid.claimed_id" => "http://steamcommunity.com/openid/id/" <> id}) do
     key =
       :ueberauth
       |> Application.fetch_env!(Ueberauth.Strategy.Steam)
@@ -126,7 +126,7 @@ defmodule Ueberauth.Strategy.Steam do
   end
 
   @spec validate_user(map) :: boolean
-  defp validate_user(params) do
+  def validate_user(params) do
     query =
       params
       |> Enum.filter(fn {key, _value} -> String.starts_with?(key, "openid.") end)
