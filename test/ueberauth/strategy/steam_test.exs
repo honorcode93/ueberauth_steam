@@ -11,7 +11,7 @@ defmodule Ueberauth.Strategy.SteamTest do
        loccountrycode: "NL", locstatecode: "03", personaname: "Sample",
        personastate: 0, personastateflags: 0,
        primaryclanid: "435345345", profilestate: 1,
-       profileurl: "http://steamcommunity.com/id/sample/",
+       profileurl: "https://steamcommunity.com/id/sample/",
        realname: "Sample Sample", steamid: "765309403423",
        timecreated: 452342342}
   @sample_response %{response: %{players: [@sample_user]}}
@@ -72,7 +72,7 @@ defmodule Ueberauth.Strategy.SteamTest do
       conn =
         callback(%{
           "openid.mode" => "id_res",
-          "openid.claimed_id" => "http://steamcommunity.com/openid/id/12345"
+          "openid.claimed_id" => "https://steamcommunity.com/openid/id/12345"
         })
 
       assert conn.assigns == %{
@@ -163,7 +163,7 @@ defmodule Ueberauth.Strategy.SteamTest do
       assert Steam.info(conn) == %Ueberauth.Auth.Info{
              image: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f3/f3dsf34324eawdasdas3rwe.jpg",
              location: "NL", name: "Sample Sample",
-             urls: %{Steam: "http://steamcommunity.com/id/sample/"}}
+             urls: %{Steam: "https://steamcommunity.com/id/sample/"}}
     end
 
     test "extra", %{conn: conn} do
@@ -186,7 +186,7 @@ defmodule Ueberauth.Strategy.SteamTest do
     test "info", %{conn: conn} do
       auth_info = %Ueberauth.Auth.Info{
             image: "https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/f3/f3dsf34324eawdasdas3rwe.jpg",
-            urls: %{Steam: "http://steamcommunity.com/id/sample/"}}
+            urls: %{Steam: "https://steamcommunity.com/id/sample/"}}
       assert Steam.info(conn) == auth_info
     end
   end

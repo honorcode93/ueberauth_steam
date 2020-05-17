@@ -5,8 +5,8 @@ defmodule UeberauthSteam.Mixfile do
     [
       app: :ueberauth_steam,
       description: "Steam OpenID Strategy for Überauth.",
-      version: "0.1.0",
-      elixir: "~> 1.4",
+      version: "0.2.0",
+      elixir: "~> 1.7",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
       deps: deps(),
@@ -49,18 +49,18 @@ defmodule UeberauthSteam.Mixfile do
   defp deps do
     [
       # Dependencies
-      {:httpoison, "~> 0.11"},
+      {:httpoison, "~> 1.6.2"},
       {:poison, "~> 3.1"},
-      {:ueberauth, "~> 0.4"},
+      {:ueberauth, "~> 0.6"},
 
       # Testing
-      {:meck, "~> 0.8.4", only: :test},
+      {:meck, "~> 0.8.13", only: :test},
 
       # Code Maintenance
-      {:credo, "~> 0.7", only: [:dev, :test]},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:ex_doc, "~> 0.15", only: :dev},
-      {:excoveralls, "~> 0.6", only: :test},
+      {:credo, "~> 1.4", only: [:dev, :test]},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:ex_doc, "~> 0.21", only: :dev},
+      {:excoveralls, "~> 0.10", only: :test},
       {:inch_ex, "~> 0.5", only: [:dev, :test]},
     ]
   end
