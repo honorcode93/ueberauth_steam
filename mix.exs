@@ -49,7 +49,7 @@ defmodule UeberauthSteam.Mixfile do
   defp deps do
     [
       # Dependencies
-      {:httpoison, "~> 1.6.2"},
+      {:httpoison, "~> 0.11"},
       {:poison, "~> 3.1"},
       {:ueberauth, "~> 0.6"},
 
